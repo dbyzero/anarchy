@@ -1,5 +1,9 @@
 .sheet {
     .character-enhanced {
+        --darkglass-color-font: black !important;
+        --darkglass-background-attributes: white !important;
+        color: var(--darkglass-color-font);
+
         a {
             transition: all 200ms;
             cursor: pointer !important;
@@ -269,7 +273,7 @@
 
             input {
                 height: 20px;
-                font-size: 12px;
+                font-size: 14px;
                 border-top: 0px;
                 border-left: 0px;
                 border-right: 0px;
@@ -427,9 +431,8 @@
                                     display: block;
                                     text-align: center;
                                     font-size: 14px;
-                                    font-weight: bold;
-                                    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-                                    color: white;
+                                    text-shadow: none;
+                                    color: black;
                                     cursor: pointer;
                                 }
                             }
@@ -599,6 +602,8 @@
             }
 
             .item-list {
+                overflow: auto;
+                margin-bottom: 16px;
                 padding: 1rem 1rem 0 1rem;
                 margin-top: 0rem;
                 gap: 1rem;
@@ -624,6 +629,12 @@
                             .anarchy-img {
                                 width: 46px;
                                 height: 46px;
+                            }
+
+                            .item-controls {
+                                position: absolute;
+                                top: 8px;
+                                right: 8px;
                             }
                         }
 
@@ -671,6 +682,12 @@
             margin-right: -4px;
             padding: 0 0rem 2rem 0rem;
             box-shadow: var(--anarchy-shadow-section);
+
+            .item-controls {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+            }
 
             h2 {
                 --wrapper-padding: 19px;
@@ -723,6 +740,8 @@
             }
 
             .item-list {
+                overflow: auto;
+                margin-bottom: 16px;
                 gap: 1rem;
                 padding: 1rem 1rem 0 1rem;
                 margin-top: 0rem;
@@ -852,6 +871,11 @@
                 display: grid;
                 grid-template-columns: 1fr 120px 120px 120px;
                 gap: 8px;
+
+                .checkbar-img {
+                    width: 24px;
+                    height: 24px;
+                }
 
                 .tokens {
                     display: flex;
@@ -993,6 +1017,17 @@
                     }
                 }
 
+                .anarchy-essence {
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: 2fr 1fr;
+                    gap: 8px;
+
+                    div {
+                        flex: 1;
+                    }
+                }
+
                 .edge-credibility {
                     height: 100%;
                     display: grid;
@@ -1083,7 +1118,8 @@
 
                 .gear {
                     .content {
-                        padding:4px ;
+                        padding: 4px;
+
                         p {
                             text-align: justify;
                         }
@@ -1139,6 +1175,7 @@
                                     font-weight: bold;
                                     font-size: 18px;
                                     letter-spacing: 1px;
+                                    transform: translateY(-12px);
                                 }
 
                                 .information {
@@ -1172,8 +1209,8 @@
 
                         .item-controls {
                             position: absolute;
-                            bottom: 4px;
-                            right: 28px;
+                            top: 14px;
+                            right: 32px;
                             text-align: center;
                         }
                     }
@@ -1321,16 +1358,17 @@
 
                     .contact {
                         .content {
-                            padding:4px ;
+                            padding: 4px;
+
                             p {
                                 text-align: justify;
                             }
 
                             label {
                                 font-family: "BebasNeue";
-                                font-size: 18px;
                                 letter-spacing: 1px;
-                                font-weight: bold;
+                                font-size: 20px;
+                                letter-spacing: 1px;
                             }
                         }
 
@@ -1409,6 +1447,8 @@
             }
 
             .item-list {
+                overflow: auto;
+                margin-bottom: 16px;
                 gap: 1rem;
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
