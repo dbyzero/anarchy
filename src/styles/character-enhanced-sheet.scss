@@ -430,9 +430,8 @@
                                     display: block;
                                     text-align: center;
                                     font-size: 14px;
-                                    font-weight: bold;
-                                    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-                                    color: white;
+                                    text-shadow: none;
+                                    color: black;
                                     cursor: pointer;
                                 }
                             }
@@ -1175,6 +1174,7 @@
                                     font-weight: bold;
                                     font-size: 18px;
                                     letter-spacing: 1px;
+                                    transform: translateY(-12px);
                                 }
 
                                 .information {
@@ -1208,8 +1208,8 @@
 
                         .item-controls {
                             position: absolute;
-                            bottom: 4px;
-                            right: 28px;
+                            top: 14px;
+                            right: 32px;
                             text-align: center;
                         }
                     }
