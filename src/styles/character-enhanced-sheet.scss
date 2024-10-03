@@ -3,6 +3,7 @@
         --darkglass-color-font: black !important;
         --darkglass-background-attributes: white !important;
         color: var(--darkglass-color-font);
+
         a {
             transition: all 200ms;
             cursor: pointer !important;
@@ -602,7 +603,7 @@
 
             .item-list {
                 overflow: auto;
-                margin-bottom:16px;
+                margin-bottom: 16px;
                 padding: 1rem 1rem 0 1rem;
                 margin-top: 0rem;
                 gap: 1rem;
@@ -740,7 +741,7 @@
 
             .item-list {
                 overflow: auto;
-                margin-bottom:16px;
+                margin-bottom: 16px;
                 gap: 1rem;
                 padding: 1rem 1rem 0 1rem;
                 margin-top: 0rem;
@@ -1365,9 +1366,9 @@
 
                             label {
                                 font-family: "BebasNeue";
-                                font-size: 18px;
                                 letter-spacing: 1px;
-                                font-weight: bold;
+                                font-size: 20px;
+                                letter-spacing: 1px;
                             }
                         }
 
@@ -1447,7 +1448,7 @@
 
             .item-list {
                 overflow: auto;
-                margin-bottom:16px;
+                margin-bottom: 16px;
                 gap: 1rem;
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
