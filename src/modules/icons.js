@@ -32,3 +32,6 @@ export class Icons {
   }
 
 }
+
+// export Icons for JS plugins
+window.ANARCHY_ICONS = Icons;
