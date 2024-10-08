@@ -53,6 +53,11 @@ const SHADOWRUN_ANARCHY_NO_HACK = {
   }
 };
 
+// export hooks and settings for JS hacks
+window.ANARCHY_HOOKS = ANARCHY_HOOKS;
+window.SETTING_KEY_ANARCHY_HACK = SETTING_KEY_ANARCHY_HACK;
+window.SHADOWRUN_ANARCHY_NO_HACK = SHADOWRUN_ANARCHY_NO_HACK;
+
 export class HooksManager {
 
   constructor() {
