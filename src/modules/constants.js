@@ -126,7 +126,7 @@ export const ANARCHY_SYSTEM = {
 
 
 // export constant for JS hacks
-window.ANARCHY_CONSTANTS = {
+globalThis.ANARCHY_CONSTANTS = {
   SYSTEM_NAME,
   SYSTEM_DESCRIPTION,
   SYSTEM_SOCKET,
