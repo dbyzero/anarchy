@@ -290,6 +290,7 @@
         .section-qualities,
         .section-story,
         .section-equipments,
+        .section-owned,
         .section-shadowamps {
             max-height: 1000px;
             transition: max-height 400ms cubic-bezier(.14, .87, .5, .97);
@@ -1049,8 +1050,23 @@
             }
         }
 
+        .owned,
         .equipments {
             background-color: #fec81c;
+
+            &.owned{
+                background-color: #e3e4e6;
+
+                h2 {
+                    // background-color: white;
+                    --wrapper-background-color: #e3e4e6;
+
+                    .content {
+                        background-color: #e3e4e6;
+                    }
+                }
+            }
+
             border-top: 2px solid black;
             z-index: 0;
             position: relative;
