@@ -76,6 +76,8 @@ const HBS_PARTIAL_TEMPLATES = [
   'systems/anarchy/templates/actor/character-enhanced/contacts.hbs',
   'systems/anarchy/templates/actor/character-enhanced/gmnotes.hbs',
   'systems/anarchy/templates/actor/character-enhanced/description.hbs',
+  'systems/anarchy/templates/actor/character-enhanced/owned-actor.hbs',
+  'systems/anarchy/templates/actor/character-enhanced/owned-actors.hbs',
   // actor common
   'systems/anarchy/templates/actor/parts/attributebutton.hbs',
   'systems/anarchy/templates/actor/parts/attributebuttons.hbs',
