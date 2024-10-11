@@ -1,8 +1,10 @@
 import { AttributeActions } from "../attribute-actions.js";
 import { ANARCHY } from "../config.js";
+import { TEMPLATE } from "../constants.js";
 import { Enums } from "../enums.js";
 import { Misc } from "../misc.js";
 
+const SHADOWAMP_TYPES = [TEMPLATE.itemType.shadowamp, TEMPLATE.itemType.weapon, TEMPLATE.itemType.cyberdeck];
 /**
  * Modifier: {group, effect, category, subCategory, value, condition, id}
  */
@@ -90,28 +92,32 @@ export class Modifiers {
           case 'attributeAction': return m.subCategory == context.attributeAction || m.subCategory == AttributeActions.getDefenseAttributeAction(context.defenseAction)
         }
       }
-      return false;
+      return false
     }
   }
 
   static computeRollModifiers(items, context, effect) {
     const contextFilter = Modifiers.buildRollModifiersFilter(context, effect)
     const filter = m => m.group == 'roll' && m.effect == effect && contextFilter(m)
+
     const itemModifiers = Modifiers._activeItems(items).map(item => Modifiers.itemModifiers(item, filter))
       .reduce((a, b) => a.concat(b), [])
       .sort(Misc.descending(im => im.modifier.value))
 
-    const numericModifiers = itemModifiers.map(im => im.modifier.value)
-    const deltaWare = numericModifiers.find(v => v > 3) ?? 0
-    const negative = Misc.sumValues(numericModifiers.filter(v => v < 0))
-    const positive = Math.min(3, Misc.sumValues(numericModifiers.filter(v => v > 0 && v <= 3)))
-    // allow only one item with modifier above 3 that replaces usual max of 3 to positive modifiers (for deltaware option in French rulebook)
-
-    const sum = negative + Math.max(positive, deltaWare)
+    const sumShadowamp = Modifiers.$sumShadowampModifiers(itemModifiers.filter(it => SHADOWAMP_TYPES.includes(it.item.type)).map(im => im.modifier.value))
+    const sumOthers = Misc.sumValues(itemModifiers.filter(it => !SHADOWAMP_TYPES.includes(it.item.type)).map(im => im.modifier.value))
     return {
-      value: sum,
+      value: sumShadowamp + sumOthers,
       sources: itemModifiers
-    };
+    }
+  }
+
+  static $sumShadowampModifiers(shadowampModifiers) {
+    const maxPositive = shadowampModifiers.find(v => v > 3) ?? 0
+    const negative = Misc.sumValues(shadowampModifiers.filter(v => v < 0))
+    const positive = Math.min(3, Misc.sumValues(shadowampModifiers.filter(v => v > 0 && v <= 3)))
+    // allow only one item with modifier above 3 that replaces usual max of 3 to positive modifiers (for deltaware option in French rulebook)
+    return negative + Math.max(positive, maxPositive)
   }
 
   static computeModifiers(items, group, effect = undefined, category = undefined) {
