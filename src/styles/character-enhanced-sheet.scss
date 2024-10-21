@@ -3,6 +3,7 @@
         --darkglass-color-font: black !important;
         --darkglass-background-attributes: white !important;
         color: var(--darkglass-color-font);
+        container-type: inline-size;
 
         a {
             transition: all 200ms;
@@ -29,6 +30,35 @@
             display: grid;
             grid-template-columns: 150px 1fr;
             position: relative;
+
+            @container (max-width:700px) {
+                height: 220px;
+
+                .name-attributes {
+                    grid-template-rows: 50px 170px !important;
+                }
+
+                .attributes {
+                    grid-template-columns: 1fr 1fr 1fr !important;
+                }
+
+                .avatar {
+                    img {
+                        margin-top: 47px;
+                    }
+                }
+
+                .name-attributes {
+                    .name {
+                        width: calc(100% + 145px);
+                        margin-left: -136px;
+                    }
+                }
+
+                .roleplay {
+                    grid-template-columns: 1fr !important;
+                }
+            }
 
             .avatar {
                 position: relative;
@@ -203,6 +233,10 @@
             font-weight: bold;
             margin-right: -5px;
 
+            @container (max-width:700px) {
+                display: none;
+            }
+
             h3 {
                 border-bottom: none;
                 padding: 8px 0 0 0;
@@ -286,6 +320,9 @@
         .section-monitors,
         .section-skills,
         .section-roleplay,
+        .section-keywords,
+        .section-cues,
+        .section-dispositions,
         .section-actions,
         .section-qualities,
         .section-story,
@@ -387,9 +424,14 @@
 
             .action-list {
                 display: grid;
-                grid-template-columns: 1.5fr 1fr;
+                grid-template-columns: 1fr 1fr;
                 gap: 8px;
                 padding: 0 16px;
+
+                @container (max-width:500px) {
+                    grid-template-columns: 1fr;
+                }
+
 
                 .item-list {
                     &>.content {
@@ -817,6 +859,11 @@
             padding: 0 1rem 2rem 1rem;
             box-shadow: var(--anarchy-shadow-section);
 
+            @container (max-width:700px) {
+                margin-top: 0;
+            }
+
+
             h2 {
                 --wrapper-padding: 19px;
                 --wrapper-background-color: #dcdddf;
@@ -870,7 +917,7 @@
 
             .monitor-list {
                 display: grid;
-                grid-template-columns: 1fr 120px 120px 120px;
+                grid-template-columns: 1fr 376px;
                 gap: 8px;
 
                 .checkbar-img {
@@ -881,6 +928,12 @@
                 .tokens {
                     display: flex;
                     flex-direction: column;
+                    gap: 8px;
+                }
+
+                .health {
+                    display: grid;
+                    grid-template-columns: 120px 120px 120px;
                     gap: 8px;
                 }
 
@@ -1048,13 +1101,98 @@
                     }
                 }
             }
+
+            @container (max-width: 650px) {
+                .monitor-list {
+                    grid-template-columns: 1fr;
+
+                    .health {
+                        grid-template-columns: 1fr 1fr 1fr;
+                    }
+                }
+            }
+
+        }
+
+        .roleplay-keywords,
+        .roleplay-dispositions,
+        .roleplay-cues {
+            background-color: white;
+            display: none;
+
+            border-top: 2px solid black;
+            z-index: 0;
+            position: relative;
+            margin-top: 0px;
+            margin-left: -4px;
+            margin-right: -4px;
+            padding: 0 1rem 2rem 1rem;
+            box-shadow: var(--anarchy-shadow-section);
+
+            @container (max-width: 700px) {
+                display: inherit;
+                h3 {
+                    display:none;
+                }
+            }
+
+            h2 {
+                --wrapper-padding: 19px;
+                --wrapper-background-color: white;
+                display: inline-block;
+                margin-top: -19px;
+                padding-bottom: 0px;
+                margin-bottom: 0px;
+
+                .side.up {
+                    box-shadow: var(--anarchy-shadow-section);
+                }
+
+                .side.down,
+                .side.right,
+                .side.left,
+                .angle.br,
+                .angle.bl {
+                    display: none;
+                }
+
+                .content {
+                    color: black;
+                    font-size: 1.2em;
+                    border-bottom: none;
+
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    font-family: "BebasNeue";
+                    letter-spacing: 2px;
+
+                    background-color: white;
+                    transform: translateY(-14px);
+
+                    display: flex;
+                    align-content: center;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 8px;
+
+                    a {
+                        text-shadow: -1px 0 transparent, 1px -1px 0 transparent, -1px 1px 0 transparent, 1px 1px 0 transparent;
+                        display: flex;
+                        align-items: center;
+                        align-content: center;
+                        justify-content: center;
+                    }
+                }
+            }
+
+
         }
 
         .owned,
         .equipments {
             background-color: #fec81c;
 
-            &.owned{
+            &.owned {
                 background-color: #e3e4e6;
 
                 h2 {
