@@ -1131,8 +1131,9 @@
 
             @container (max-width: 700px) {
                 display: inherit;
+
                 h3 {
-                    display:none;
+                    display: none;
                 }
             }
 
@@ -1439,6 +1440,10 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 1rem;
+
+                @container (max-width: 650px) {
+                    grid-template-columns: 1fr;
+                }
 
                 .title {
                     margin-top: 0px;
