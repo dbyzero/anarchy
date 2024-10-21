@@ -25,7 +25,8 @@
                             {{localize (concat
                             'ANARCHY.actor.counters.essence')}}
                         </label>
-                        {{numberFormat essence.value decimals=2 sign=false}}<br/>
+                        {{numberFormat essence.value decimals=2
+                        sign=false}}<br />
                         {{localize ANARCHY.actor.essence.adjustShort}}
                         {{numberFormat essence.adjust decimals=0 sign=false}}
                     </div>
@@ -58,28 +59,30 @@
                 </div>
             </div>
         </div>
-        <div class="armor wrapper-hexabox">
-            {{>
-            "systems/anarchy/templates/actor/character-enhanced/hexabox.hbs"}}
-            <div class="content">
+        <div class="health">
+            <div class="armor wrapper-hexabox">
                 {{>
-                "systems/anarchy/templates/actor/character-enhanced/armor.hbs"}}
+                "systems/anarchy/templates/actor/character-enhanced/hexabox.hbs"}}
+                <div class="content">
+                    {{>
+                    "systems/anarchy/templates/actor/character-enhanced/armor.hbs"}}
+                </div>
             </div>
-        </div>
-        <div class="stun wrapper-hexabox">
-            {{>
-            "systems/anarchy/templates/actor/character-enhanced/hexabox.hbs"}}
-            <div class="content">
+            <div class="stun wrapper-hexabox">
                 {{>
-                "systems/anarchy/templates/actor/character-enhanced/stun.hbs"}}
+                "systems/anarchy/templates/actor/character-enhanced/hexabox.hbs"}}
+                <div class="content">
+                    {{>
+                    "systems/anarchy/templates/actor/character-enhanced/stun.hbs"}}
+                </div>
             </div>
-        </div>
-        <div class="physical wrapper-hexabox">
-            {{>
-            "systems/anarchy/templates/actor/character-enhanced/hexabox.hbs"}}
-            <div class="content">
+            <div class="physical wrapper-hexabox">
                 {{>
-                "systems/anarchy/templates/actor/character-enhanced/physical.hbs"}}
+                "systems/anarchy/templates/actor/character-enhanced/hexabox.hbs"}}
+                <div class="content">
+                    {{>
+                    "systems/anarchy/templates/actor/character-enhanced/physical.hbs"}}
+                </div>
             </div>
         </div>
     </div>
