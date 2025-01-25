@@ -1,3 +1,6 @@
+{{#if options.limited}}
+{{>"systems/anarchy/templates/actor/character-limited.hbs"}}
+{{else}}
 <form class="{{options.cssClass}}" autocomplete="off">
   <header class="sheet-header">
     <div class="passport-header">
@@ -133,6 +136,6 @@
         {{> 'systems/anarchy/templates/actor/parts/gmnotes.hbs'}}
       </div>
     </div>
-
   </section>
 </form>
+{{/if}}

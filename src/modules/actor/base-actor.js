@@ -145,7 +145,9 @@ export class AnarchyBaseActor extends Actor {
       kv[1].maxBonus = Modifiers.sumMonitorModifiers(this.items, kv[0], 'max')
       kv[1].resistanceBonus = Modifiers.sumMonitorModifiers(this.items, kv[0], 'resistance')
     })
-    Object.entries(this.system.attributes).forEach(kv => kv[1].total = this.getAttributeValue(kv[0]))
+    if (this.system.attributes){
+      Object.entries(this.system.attributes).forEach(kv => kv[1].total = this.getAttributeValue(kv[0]))
+    }
   }
 
   getAttributes() { return []; }

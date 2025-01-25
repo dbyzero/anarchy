@@ -29,6 +29,7 @@ export class AnarchyActorSheet extends ActorSheet {
         ownerActor: this.actor.getOwnerActor(),
         ownedActors: this.actor.getOwnedActors(),
         options: {
+          limited: this.document.limited,
           owner: this.document.isOwner,
           cssClass: this.isEditable ? "editable" : "locked",
         },

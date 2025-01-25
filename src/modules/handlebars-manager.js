@@ -30,6 +30,7 @@ const HBS_PARTIAL_TEMPLATES = [
   'systems/anarchy/templates/actor/character/metatype.hbs',
   'systems/anarchy/templates/actor/character/social-celebrity.hbs',
   // character parts
+  'systems/anarchy/templates/actor/character-limited.hbs',
   'systems/anarchy/templates/actor/parts/words.hbs',
   'systems/anarchy/templates/actor/parts/contact.hbs',
   'systems/anarchy/templates/actor/parts/contacts.hbs',

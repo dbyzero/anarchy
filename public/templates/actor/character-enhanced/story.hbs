@@ -10,6 +10,7 @@
     class="section-story {{actorTabClosed actor._id 'story'}}">
     <div
       class="section-story {{actorTabClosed actor._id 'story'}}">
+      {{#unless options.limited}}
       <div class="social-info">
         <div class="credibility wrapper-hexabox">
           {{> "systems/anarchy/templates/actor/character-enhanced/hexabox.hbs"}}
@@ -70,12 +71,15 @@
       <div class="contacts">
         {{> "systems/anarchy/templates/actor/character-enhanced/contacts.hbs"}}
       </div>
+      {{/unless}}
       <div class="description">
         {{> 'systems/anarchy/templates/actor/character-enhanced/description.hbs'}}
       </div>
-      <div class="mj-note">
+      {{#unless options.limited}}
+      <div class="gm-note">
         {{> 'systems/anarchy/templates/actor/character-enhanced/gmnotes.hbs'}}
       </div>
+      {{/unless}}
     </div>
   </div>
 </div>
