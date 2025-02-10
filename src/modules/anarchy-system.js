@@ -124,7 +124,8 @@ export class AnarchySystem {
     AnarchyUsers.init();
     AnarchyDice.init();
     AnarchyRoll.init();
-    AnarchyBaseItem.init();
+    AnarchyBaseItem.init()
+    AnarchyBaseActor.init()
     ActorDamageManager.init();
     ChatManager.init();
     this.gmManager = new GMManager(this.gmAnarchy, this.gmConvergence);

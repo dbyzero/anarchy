@@ -6,7 +6,17 @@
         "ownerId": "",
         "description": "",
         "gmnotes": "",
-        "favorites": []
+        "favorites": [],
+        "state":{
+          "matrix":{
+            "value": 0,
+            "max": 0
+          },
+          "physical":{
+            "value": 0,
+            "max": 0
+          }
+        }
       },
       "matrix-monitor": {
         "monitors": {

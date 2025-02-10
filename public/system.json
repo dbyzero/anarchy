@@ -106,6 +106,6 @@
     "distance": 1,
     "units": "m"
   },
-  "primaryTokenAttribute": "monitors.physical",
-  "secondaryTokenAttribute": "monitors.stun"
+  "primaryTokenAttribute": "state.physical",
+  "secondaryTokenAttribute": "state.matrix"
 }

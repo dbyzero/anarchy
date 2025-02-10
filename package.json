@@ -1,6 +1,7 @@
 {
   "scripts": {
     "build": "npx vite build",
+    "run": "npx vite serve",
     "packCompendiumsToDist": "node ./tools/packCompendiumsToDist.mjs",
     "packCompendiumsToPublic": "node ./tools/packCompendiumsToPublic.mjs",
     "unpackCompendiumsFromPublic": "node ./tools/unpackCompendiumsFromPublic.mjs"

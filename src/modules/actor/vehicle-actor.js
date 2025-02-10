@@ -26,6 +26,13 @@ export class VehicleActor extends AnarchyBaseActor {
     super.prepareDerivedData()
   }
 
+  computePhysicalState() {
+    return {
+      max: this.system.monitors.structure.max,
+      value: this.system.monitors.structure.max - this.system.monitors.structure.value
+    }
+  }
+
   getMatrixDetails() {
     return {
       hasMatrix: true,

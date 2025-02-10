@@ -14,6 +14,10 @@ import { ActorDamageManager } from "./actor-damage.js";
 
 export class AnarchyBaseActor extends Actor {
 
+  static init() {
+    Hooks.on('updateActor', async (actor, updates, options, id) => await actor.onUpdateActor(updates, options));
+  }
+
   constructor(docData, context = {}) {
     if (!context.anarchy?.ready) {
       const ActorConstructor = game.system.anarchy.actorClasses[docData.type];
@@ -81,7 +85,7 @@ export class AnarchyBaseActor extends Actor {
     }
     return qualities.sort((qa, qb) => {
       // same type of quality
-      if(qa.system.positive === qb.system.positive) {
+      if (qa.system.positive === qb.system.positive) {
         if (qa.name > qb.name) return 1;
         if (qa.name < qb.name) return -1;
         return 0;
@@ -99,8 +103,8 @@ export class AnarchyBaseActor extends Actor {
       return []
     }
     return shadowamps.sort((sa, sb) => {
-      if(sa.system.level > sb.system.level) return -1;
-      if(sa.system.level < sb.system.level) return 1;
+      if (sa.system.level > sb.system.level) return -1;
+      if (sa.system.level < sb.system.level) return 1;
       if (sa.name > sb.name) return 1;
       if (sa.name < sb.name) return -1;
       return 0;
@@ -145,9 +149,10 @@ export class AnarchyBaseActor extends Actor {
       kv[1].maxBonus = Modifiers.sumMonitorModifiers(this.items, kv[0], 'max')
       kv[1].resistanceBonus = Modifiers.sumMonitorModifiers(this.items, kv[0], 'resistance')
     })
-    if (this.system.attributes){
+    if (this.system.attributes) {
       Object.entries(this.system.attributes).forEach(kv => kv[1].total = this.getAttributeValue(kv[0]))
     }
+    this.system.state = this.computeState()
   }
 
   getAttributes() { return []; }
@@ -166,6 +171,34 @@ export class AnarchyBaseActor extends Actor {
       this.system.monitors.matrix.max = this._getMonitorMax(matrix.logic)
       this.system.monitors.matrix.canMark = true
     }
+  }
+
+  async onUpdateActor(updates, options) {
+    if (updates.system?.monitors != undefined && updates.system?.state == undefined) {
+      this.update({ 'system.state': this.computeState() })
+    }
+  }
+
+  computeState() {
+    return {
+      matrix: this.computeMatrixState(),
+      physical: this.computePhysicalState(),
+    }
+  }
+
+  computePhysicalState(){
+    return { value: 0, max: 0 }
+  }
+
+  computeMatrixState() {
+    const matrixDetails = this.getMatrixDetails();
+    if (matrixDetails.hasMatrix){
+      return {
+        value: matrixDetails.monitor.max - matrixDetails.monitor.value,
+        max: matrixDetails.monitor.max
+      }
+    }
+    return { value: 0, max: 0 }
   }
 
   getMatrixDetails() {

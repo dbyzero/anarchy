@@ -27,6 +27,19 @@ export class CharacterActor extends AnarchyBaseActor {
     this.system.ignoreWounds = Modifiers.sumModifiers(this.items, 'other', 'ignoreWounds')
   }
 
+  computePhysicalState() {
+    const maxMonitor = Math.max(this.system.monitors.physical.max, this.system.monitors.stun.max) + this.system.monitors.armor.max
+    const dead = this.system.monitors.physical.value == this.system.monitors.physical.max
+    const ko = this.system.monitors.stun.max == this.system.monitors.stun.value
+    const current = (dead || ko)
+      ? maxMonitor
+      : Math.max(this.system.monitors.physical.value, this.system.monitors.stun.value) + this.system.monitors.armor.value
+    return {
+      max: maxMonitor,
+      value: maxMonitor - current
+    }
+  }
+
   computeEssence() {
     // base essence
     const baseEssence = game.system.anarchy.hooks.callHookMethod(ANARCHY_HOOKS.PROVIDE_BASE_ESSENCE, this)
