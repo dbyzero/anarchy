@@ -26,7 +26,7 @@
       },
       "anarchyHack": {
         "name": "Anarchy hack",
-        "hint": "Choisir un hack de Anarchy fourni par un module"
+        "hint": "Choisir d'utiliser Shadowrun Anarchy ou un hack fourni par un module"
       },
       "skillSet": {
         "name": "Liste de compétences",

@@ -1,4 +1,4 @@
-import { AnarchySystem } from "./modules/anarchy-system.js"
+import { AnarchySystem } from "./modules/anarchy-system.mjs"
 
 AnarchySystem.start();
 

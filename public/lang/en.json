@@ -26,7 +26,7 @@
       },
       "anarchyHack": {
         "name": "Anarchy hack",
-        "hint": "Use an Anarchy Hack provided by a module"
+        "hint": "Use an standard Shadowrun Anarchy or a Hack provided by a module"
       },
       "skillSet": {
         "name": "Skill set",
