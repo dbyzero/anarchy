@@ -1,8 +1,8 @@
 {
   "id": "anarchy",
-  "version": "12.2.9",
+  "version": "12.2.10",
   "manifest": "https://raw.githubusercontent.com/VincentVk9373/anarchy/master/public/system.json",
-  "download": "https://github.com/VincentVk9373/anarchy/releases/download/v12.2.9/foundry-anarchy-v12.2.9.zip",
+  "download": "https://github.com/VincentVk9373/anarchy/releases/download/v12.2.10/foundry-anarchy-v12.2.10.zip",
   "url": "https://github.com/VincentVk9373/anarchy",
   "bugs": "https://github.com/VincentVk9373/anarchy/issues",
   "title": "Anarchy",
