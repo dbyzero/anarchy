@@ -65,6 +65,14 @@
       "fullyDefended": "L'attaque est totalement évitée",
       "applyDamage": "Appliquer {damage}"
     },
+    "chat_actions": {
+      "rollDice": {
+        "title": "Lancer de dés Anarchy",
+        "instruction": "Nombre de dés à lancer",
+        "error": "Veuillez entrer un nombre valide de dés.",
+        "result": "Lancer de ${count}d6, ${success} Succès! ${ones} jets valant 1`"
+      }
+    },
     "user": {
       "selectedTokenActors": "Sélection de tokens-Acteurs"
     },

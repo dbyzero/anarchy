@@ -29,31 +29,64 @@ export class GMManager extends Application {
       })
     Hooks.once('ready', () => this.onReady());
     Hooks.on("renderChatLog", async (app, html, data) => {
-      if (game.user.isGM) {
-        const templatePath = "systems/anarchy/templates/app/gm-manager-chat.hbs";
-        const templateData = {
-          title: game.i18n.localize("ANARCHY.gmManager.title"),
-        };
-        const template = await renderTemplate(templatePath, templateData);
-        const button = $(template);
+      const templatePath = "systems/anarchy/templates/app/chat-tools.hbs";
+      const templateData = {
+        title: game.i18n.localize("ANARCHY.gmManager.title"),
+        rollDice: game.i18n.localize("ANARCHY.chat_actions.rollDice.title"),
+        isGM: game.user.isGM,
+      };
+      const templateHTML = await renderTemplate(templatePath, templateData);
+      const template = $(templateHTML)
+      const buttonGM = template.find('.gmmanager')
+      const buttonDICE = template.find('.rolldice')
 
-        button.css({
-          zIndex: 1000,
-          flex: "0 0 28px",
-          margin: "0 8px 4px 8px",
-          width: "calc(100% - 16px)"
-        });
+      buttonDICE.on("click", () => {
+        new Dialog({
+          title: game.i18n.localize("ANARCHY.chat_actions.rollDice.title"),
+          content: "<div style=\"display:flex;margin:4px 0 8px 0;align-items:center;gap:8px\">" +
+            game.i18n.localize("ANARCHY.chat_actions.rollDice.instruction") +
+            '<input class="roll-dice-value" name="macro-roll-count-dice" type="number" value="3" /></div>',
+          buttons: {
+            cancel: { label: game.i18n.localize("ANARCHY.common.cancel"), icon: '<i class="fas fa-times"></i>' },
+            submit: {
+              label: game.i18n.localize("ANARCHY.common.roll.button"), icon: '<i class="fas fa-dice"></i>',
+              callback: async (html) => {
+                const count = html.find('input[name="macro-roll-count-dice"]').val();
+                if (!count || isNaN(count) || count <= 0) {
+                  ui.notifications.warn(game.i18n.localize("ANARCHY.chat_actions.rollDice.error"));
+                  return;
+                }
 
-        button.on("click", () => {
-          if (this._element) {
-            this.close();
-          } else {
-            this.render(true);
-          }
-        });
+                const roll = new Roll(`${count}d6cs>4`);
+                await roll.evaluate({ async: true });
 
-        html.append(button);
-      }
+                const results = roll.terms[0].results;
+                const ones = results.filter(it => it.result == 1).length;
+
+                const flavor = game.i18n.format("ANARCHY.chat_actions.rollDice.result", {
+                  count: count,
+                  success: roll.total,
+                  ones: ones
+                });
+                const message = await roll.toMessage({ flavor: flavor }, { create: false });
+
+                ChatMessage.create(message);
+              }
+            }
+          },
+          default: "submit"
+        }).render(true);
+      });
+
+      buttonGM.on("click", () => {
+        if (this._element) {
+          this.close();
+        } else {
+          this.render(true);
+        }
+      });
+
+      html.append(template);
     }
     );
   }

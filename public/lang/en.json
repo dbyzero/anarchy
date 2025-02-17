@@ -65,6 +65,14 @@
       "fullyDefended": "The attack is fully defended",
       "applyDamage": "Apply {damage}"
     },
+    "chat_actions": {
+      "rollDice": {
+        "title": "Roll Anarchy dice",
+        "instruction": "Number of dice to roll: ",
+        "error": "Veuillez entrer un nombre valide de dés.",
+        "result": "Roll of {count}d6, {success} success! {ones} dice with a value of 1"
+      }
+    },
     "user": {
       "selectedTokenActors": "Selected actor tokens"
     },
