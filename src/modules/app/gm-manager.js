@@ -2,6 +2,7 @@ import { HandleDragApplication } from "./handle-drag.js";
 import { ANARCHY } from "../config.js";
 import { SYSTEM_NAME } from "../constants.js";
 import { GMDifficulty } from "./gm-difficulty.js";
+import "../../styles/gm-manager.scss";
 
 
 const GM_MANAGER = "gm-manager";
@@ -27,6 +28,31 @@ export class GMManager extends Application {
         }
       })
     Hooks.once('ready', () => this.onReady());
+    Hooks.on("renderChatLog", async (app, html, data) => {
+      const templatePath = "systems/anarchy/templates/app/gm-manager-chat.hbs"; // Adjust the path if necessary
+      const templateData = {
+        title: game.i18n.localize("ANARCHY.gmManager.title"),
+      };
+      const template = await renderTemplate(templatePath, templateData);
+      const button = $(template);
+
+      button.css({
+        zIndex: 1000,
+        flex: "0 0 28px",
+        margin: "0 8px 4px 8px",
+        width: "calc(100% - 16px)"
+      });
+
+      button.on("click", () => {
+        if (this._element) {
+          this.close();
+        } else {
+          this.render(true);
+        }
+      });
+
+      html.append(button);
+    });
   }
 
   onReady() {
@@ -70,11 +96,11 @@ export class GMManager extends Application {
     super.activateListeners(html);
 
     html.find('.app-title-bar').mousedown(event => this.handleDrag.onMouseDown(event));
+    html.find('.gm-manager-hide-button').mousedown(event => this.close());
 
     this.gmAnarchy.activateListeners(html);
     this.gmConvergence.activateListeners(html);
     this.gmDifficulty.activateListeners(html);
-
   }
-}
 
+}
