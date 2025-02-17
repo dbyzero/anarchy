@@ -1,0 +1,10 @@
+#gm-manager {
+    header {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        button.gm-manager-hide-button {
+            width: 32px;
+        }
+    }
+}
