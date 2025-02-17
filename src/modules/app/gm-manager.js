@@ -30,7 +30,7 @@ export class GMManager extends Application {
     Hooks.once('ready', () => this.onReady());
     Hooks.on("renderChatLog", async (app, html, data) => {
       if (game.user.isGM) {
-        const templatePath = "systems/anarchy/templates/app/gm-manager-chat.hbs"; // Adjust the path if necessary
+        const templatePath = "systems/anarchy/templates/app/gm-manager-chat.hbs";
         const templateData = {
           title: game.i18n.localize("ANARCHY.gmManager.title"),
         };
