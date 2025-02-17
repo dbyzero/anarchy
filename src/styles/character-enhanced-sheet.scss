@@ -1437,6 +1437,9 @@
             .social-info {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
+                @container (max-width:500px) {
+                    grid-template-columns: 1fr;
+                }
                 gap: 1rem;
 
                 .title {
