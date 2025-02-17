@@ -29,30 +29,33 @@ export class GMManager extends Application {
       })
     Hooks.once('ready', () => this.onReady());
     Hooks.on("renderChatLog", async (app, html, data) => {
-      const templatePath = "systems/anarchy/templates/app/gm-manager-chat.hbs"; // Adjust the path if necessary
-      const templateData = {
-        title: game.i18n.localize("ANARCHY.gmManager.title"),
-      };
-      const template = await renderTemplate(templatePath, templateData);
-      const button = $(template);
+      if (game.user.isGM) {
+        const templatePath = "systems/anarchy/templates/app/gm-manager-chat.hbs"; // Adjust the path if necessary
+        const templateData = {
+          title: game.i18n.localize("ANARCHY.gmManager.title"),
+        };
+        const template = await renderTemplate(templatePath, templateData);
+        const button = $(template);
 
-      button.css({
-        zIndex: 1000,
-        flex: "0 0 28px",
-        margin: "0 8px 4px 8px",
-        width: "calc(100% - 16px)"
-      });
+        button.css({
+          zIndex: 1000,
+          flex: "0 0 28px",
+          margin: "0 8px 4px 8px",
+          width: "calc(100% - 16px)"
+        });
 
-      button.on("click", () => {
-        if (this._element) {
-          this.close();
-        } else {
-          this.render(true);
-        }
-      });
+        button.on("click", () => {
+          if (this._element) {
+            this.close();
+          } else {
+            this.render(true);
+          }
+        });
 
-      html.append(button);
-    });
+        html.append(button);
+      }
+    }
+    );
   }
 
   onReady() {
